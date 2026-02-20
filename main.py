@@ -520,10 +520,16 @@ while True:
     screen.blit(score_bar_right_image, score_bar_right_rect)
     screen.blit(motion_image, motion_rect)
     screen.blit(ball_image, ball_rect)
+    
+    # --- DRAW-B ---
+
     screen.blit(player_image, player_rect)
     screen.blit(computer_image, computer_rect)
     screen.blit(speed_text, speed_text_rect)
     screen.blit(score_text, score_text_rect)
+    
+    # --- DRAW-C ---
+
     screen.blit(game_mode_text, game_mode_text_rect)
     screen.blit(game_type_text, game_type_text_rect)
     pygame.display.flip()
