@@ -30,16 +30,16 @@ game_settings_one()
 
 def game_settings_two():
 
-    global game_type
     global width
     global height
-    global game_mode
-    global player_score
-    global computer_score
     global screen
+    global game_type
+    global game_mode
     global screen_rect
-    global ball_positions
+    global player_score
     global ball_position
+    global computer_score
+    global ball_positions
 
     game_type = 'EASY'
     width, height = 802, 502
@@ -74,10 +74,9 @@ def game_images():
     top_left_image = pygame.image.load('assets/arts/TopLeft.png').convert()
     computer_image = pygame.image.load('assets/arts/Computer.png').convert()
     top_right_image = pygame.image.load('assets/arts/TopRight.png').convert()
-    score_bar_left_image = pygame.image.load('assets/arts/ScoreBar.png').convert()
     bottom_left_image = pygame.image.load('assets/arts/BottomLeft.png').convert()
+    score_bar_left_image = pygame.image.load('assets/arts/ScoreBar.png').convert()
     bottom_right_image = pygame.image.load('assets/arts/BottomRight.png').convert()
-
     score_bar_right_image = pygame.transform.flip(score_bar_left_image, True, False)
 
 game_images()
