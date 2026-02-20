@@ -4,7 +4,7 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
-fpsClock = pygame.time.Clock()
+fps_clock = pygame.time.Clock()
 
 # --- CONFIG ---
 
@@ -142,15 +142,11 @@ def game_type_font():
 
     global game_type_text
     global game_type_text_rect
-    global game_type_text_x
-    global game_type_text_y
 
     game_type_text = font.render(f'TYPE: {game_type}', True, 'White')
     game_type_text_rect = game_type_text.get_rect()
-    game_type_text_x = screen_rect.centerx + game_type_text_rect.w
-    game_type_text_y = 20
-    game_type_text_rect.x = game_type_text_x
-    game_type_text_rect.y = game_type_text_y
+    game_type_text_rect.x = screen_rect.centerx + game_type_text_rect.w
+    game_type_text_rect.y = 20
 
 game_type_font()
 
@@ -160,15 +156,11 @@ def game_score_text():
 
     global score_text
     global score_text_rect
-    global score_text_x
-    global score_text_y
 
     score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
     score_text_rect = score_text.get_rect()
-    score_text_x = screen_rect.centerx - score_text_rect.w / 2
-    score_text_y = 20
-    score_text_rect.x = score_text_x
-    score_text_rect.y = score_text_y
+    score_text_rect.x = screen_rect.centerx - score_text_rect.w / 2
+    score_text_rect.y = 20
 
 game_score_text()
 
@@ -519,4 +511,4 @@ while True:
     screen.blit(game_mode_text, game_mode_text_rect)
     screen.blit(game_type_text, game_type_text_rect)
     pygame.display.flip()
-    fpsClock.tick(fps)
+    fps_clock.tick(fps)
