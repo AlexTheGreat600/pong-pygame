@@ -481,6 +481,8 @@ while True:
 
     elif keys[pygame.K_h]:
         update_type('HARD')
+
+    # --- KEYS-C ---
     
     elif keys[pygame.K_p]:
         update_mode("PLAYER VS COMPUTER")
