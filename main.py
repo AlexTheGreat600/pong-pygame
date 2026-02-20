@@ -169,7 +169,7 @@ def game_score_text():
 
     score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
     score_text_rect = score_text.get_rect()
-    score_text_rect.x = screen_rect.centerx - score_text_rect.w / 2
+    score_text_rect.centerx = screen_rect.centerx
     score_text_rect.y = 10
 
 game_score_text()
