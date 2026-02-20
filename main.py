@@ -283,11 +283,11 @@ def update_mode(mode):
     game_mode = mode
     game_mode_text = font.render(f'{game_mode}', True, 'White')
 
-# --- WINNER ---
+# --- SWITCH ---
 
-def check_winner():
-    
-    global ball_position, motion_image, player_score, computer_score
+def switch_ball_position():
+
+    global ball_position, motion_image
 
     if ball_rect.y >= height:
 
@@ -308,6 +308,12 @@ def check_winner():
         elif ball_position == "top_right":
             ball_position = "bottom_right"
             motion_image = bottom_right_image
+
+# --- WINNER ---
+
+def check_winner():
+
+    global ball_position, motion_image
 
     if ball_rect.x <= 0:
         update_score('computer', 'inc')
@@ -507,6 +513,7 @@ while True:
     # --- FUNCTIONS ---
 
     update_position()
+    switch_ball_position()
     check_winner()
     check_collision()
     automate_computer()
