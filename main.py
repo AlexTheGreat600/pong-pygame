@@ -253,26 +253,18 @@ def update_speed(type):
     global speed, speed_text
 
     if type == 'dec':
-
-        if speed > speed_min:
-            speed -= 1
-            speed_text = font.render(f'SPEED: {speed}', True, 'White')
+        if speed > speed_min: speed -= 1
     
     elif type == 'inc':
-
-        if speed < speed_max:
-            speed += 1
-            speed_text = font.render(f'SPEED: {speed}', True, 'White')
+        if speed < speed_max: speed += 1
     
     elif type == 'def':
-
         speed = speed_default
-        speed_text = font.render(f'SPEED: {speed}', True, 'White')
     
     elif type == 'min':
-
         speed = speed_min
-        speed_text = font.render(f'SPEED: {speed}', True, 'White')
+
+    speed_text = font.render(f'SPEED: {speed}', True, 'White')
 
 # --- TYPE ---
 
