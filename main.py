@@ -42,7 +42,7 @@ def game_settings_two():
     global ball_position
 
     game_type = 'EASY'
-    width, height = 802, 455
+    width, height = 802, 502
     game_mode = "PLAYER VS COMPUTER"
     player_score, computer_score = 0, 0
     screen = pygame.display.set_mode((width, height))
@@ -61,18 +61,24 @@ def game_images():
     global player_image
     global computer_image
     global top_left_image
+    global score_bar_image
     global top_right_image
     global bottom_left_image
     global bottom_right_image
+    global score_bar_left_image
+    global score_bar_right_image
 
     bg_image = pygame.image.load('assets/arts/Board.png').convert()
     ball_image = pygame.image.load('assets/arts/Ball.png').convert()
     player_image = pygame.image.load('assets/arts/Player.png').convert()
-    computer_image = pygame.image.load('assets/arts/Computer.png').convert()
     top_left_image = pygame.image.load('assets/arts/TopLeft.png').convert()
+    computer_image = pygame.image.load('assets/arts/Computer.png').convert()
     top_right_image = pygame.image.load('assets/arts/TopRight.png').convert()
+    score_bar_left_image = pygame.image.load('assets/arts/ScoreBar.png').convert()
     bottom_left_image = pygame.image.load('assets/arts/BottomLeft.png').convert()
     bottom_right_image = pygame.image.load('assets/arts/BottomRight.png').convert()
+
+    score_bar_right_image = pygame.transform.flip(score_bar_left_image, True, False)
 
 game_images()
 
@@ -105,11 +111,13 @@ def game_rects():
     global motion_rect
     global player_rect
     global computer_rect
+    global score_bar_right_rect
     
     ball_rect = ball_image.get_rect()
     motion_rect = motion_image.get_rect()
     player_rect = player_image.get_rect()
     computer_rect = computer_image.get_rect()
+    score_bar_right_rect = score_bar_right_image.get_rect()
 
 game_rects()
 
@@ -119,8 +127,10 @@ def game_positions():
 
     global ball_y
     global ball_x
+    
     ball_x,ball_y = screen_rect.center
     player_rect.y = screen_rect.centery
+    score_bar_right_rect.right = screen_rect.right
     player_rect.x = screen_rect.left + player_rect.w
     ball_rect.x, ball_rect.y = ball_x, ball_y,
     computer_rect.x, computer_rect.y = screen_rect.right - computer_rect.w * 2, screen_rect.centery
@@ -132,7 +142,7 @@ game_positions()
 def game_fonts():
 
     global font
-    font = pygame.font.SysFont('Monospace', 30)
+    font = pygame.font.SysFont('assets/fonts/Teko-VariableFont_wght.ttf', 40)
 
 game_fonts()
 
@@ -143,10 +153,10 @@ def game_type_font():
     global game_type_text
     global game_type_text_rect
 
-    game_type_text = font.render(f'TYPE: {game_type}', True, 'White')
+    game_type_text = font.render(f'TYPE: {game_type}', True, 'Black')
     game_type_text_rect = game_type_text.get_rect()
     game_type_text_rect.x = screen_rect.centerx + game_type_text_rect.w
-    game_type_text_rect.y = 20
+    game_type_text_rect.y = 10
 
 game_type_font()
 
@@ -160,7 +170,7 @@ def game_score_text():
     score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
     score_text_rect = score_text.get_rect()
     score_text_rect.x = screen_rect.centerx - score_text_rect.w / 2
-    score_text_rect.y = 20
+    score_text_rect.y = 10
 
 game_score_text()
 
@@ -171,7 +181,7 @@ def game_mode_font():
     global game_mode_text
     global game_mode_text_rect
 
-    game_mode_text = font.render(f'{game_mode}', True, 'White')
+    game_mode_text = font.render(game_mode, True, 'White')
     game_mode_text_rect = game_mode_text.get_rect()
     game_mode_text_rect.y = screen_rect.bottom - game_mode_text_rect.h - 20
     game_mode_text_rect.centerx = screen_rect.centerx
@@ -185,9 +195,9 @@ def game_speed_text():
     global speed_text
     global speed_text_rect
 
-    speed_text = font.render(f'SPEED: {speed}', True, 'White')
+    speed_text = font.render(f'SPEED: {speed}', True, 'Black')
     speed_text_rect = speed_text.get_rect()
-    speed_text_rect.y = 20
+    speed_text_rect.y = 10
     speed_text_rect.centerx = screen_rect.centerx / 3
 
 game_speed_text()
@@ -219,7 +229,7 @@ def update_player(direction):
     global player_rect
 
     if direction == 'up':
-        if player_rect.y >= 0:
+        if player_rect.y >= 75:
             player_rect.y -= speed
 
     elif direction == 'down':
@@ -233,7 +243,7 @@ def update_computer(direction):
     global computer_rect
 
     if direction == 'up':
-        if computer_rect.y >= 0:
+        if computer_rect.y >= 75:
             computer_rect.y -= speed
 
     elif direction == 'down':
@@ -256,7 +266,7 @@ def update_speed(type):
     elif type == 'min':
         speed = speed_min
 
-    speed_text = font.render(f'SPEED: {speed}', True, 'White')
+    speed_text = font.render(f'SPEED: {speed}', True, 'Black')
 
 # --- TYPE ---
 
@@ -264,7 +274,7 @@ def update_type(type):
 
     global game_type, game_type_text
     game_type = type
-    game_type_text = font.render(f'TYPE: {game_type}', True, 'White')
+    game_type_text = font.render(f'TYPE: {game_type}', True, 'Black')
 
 # --- MODE ---
 
@@ -290,7 +300,7 @@ def check_winner():
             ball_position = "top_right"
             motion_image = top_right_image
 
-    elif ball_rect.y <= 0:
+    elif ball_rect.y <= 75:
 
         if ball_position == "top_left":
             ball_position = "bottom_left"
@@ -347,7 +357,7 @@ def automate_computer():
     if game_mode == "PLAYER VS COMPUTER" or game_mode == "COMPUTER VS COMPUTER":
 
         if ball_position == "top_right":
-            if computer_rect.y >= 0:
+            if computer_rect.y >= 75:
                 computer_rect.y -= speed
 
         elif ball_position == "bottom_right":
@@ -359,7 +369,7 @@ def automate_player():
     if game_mode == "COMPUTER VS COMPUTER":
 
         if ball_position == "top_left":
-            if player_rect.y >= 0:
+            if player_rect.y >= 75:
                 player_rect.y -= speed
 
         elif ball_position == "bottom_left":
@@ -429,6 +439,10 @@ game_keysb()
 mouse = pygame.mouse.get_rel()
 
 while True:
+
+    # --- FILL ---
+
+    screen.fill("Black")
     
     # --- EVENT ---
 
@@ -501,7 +515,9 @@ while True:
 
     # --- DRAW ---
 
-    screen.blit(bg_image, (0, 0))
+    screen.blit(bg_image, (0, 47))
+    screen.blit(score_bar_left_image, (0, 0))
+    screen.blit(score_bar_right_image, score_bar_right_rect)
     screen.blit(motion_image, motion_rect)
     screen.blit(ball_image, ball_rect)
     screen.blit(player_image, player_rect)
