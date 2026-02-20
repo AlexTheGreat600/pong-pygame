@@ -445,7 +445,7 @@ while True:
             pygame.quit()
             sys.exit()
 
-    # --- KEYS ---
+    # --- KEYS-A ---
 
     keys = pygame.key.get_pressed()
 
@@ -465,7 +465,7 @@ while True:
         update_score('player', 'def')
         update_score('computer', 'def')
         
-    # --- KEYS-0 ---
+    # --- KEYS-B ---
 
     elif keys[pygame.K_MINUS]:
         update_speed('dec')
