@@ -464,6 +464,8 @@ while True:
     elif keys[pygame.K_r]:
         update_score('player', 'def')
         update_score('computer', 'def')
+        
+    # --- KEYS-0 ---
 
     elif keys[pygame.K_MINUS]:
         update_speed('dec')
