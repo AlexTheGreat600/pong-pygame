@@ -202,15 +202,21 @@ game_speed_text()
 
 # --- SCORE ---
 
-def update_score(player, score):
+def update_score(player, type):
     
     global player_score, computer_score, score_text
 
     if player == 'player':
-        player_score = score
 
-    elif player == 'computer':
-        computer_score = score
+        if type == 'inc': player_score += 1
+        elif type == 'dec': player_score -= 1
+        elif type == 'def': player_score = 0
+
+    if player == 'computer':
+
+        if type == 'inc': computer_score += 1
+        elif type == 'dec': computer_score -= 1
+        elif type == 'def': computer_score = 0
 
     score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
 
@@ -311,15 +317,13 @@ def check_winner():
             motion_image = bottom_right_image
 
     if ball_rect.x <= 0:
-        computer_score += 1
-        update_score('computer', computer_score)
+        update_score('computer', 'inc')
         ball_rect.x, ball_rect.y = ball_x, ball_y
         ball_position = random.choice(ball_positions)
         motion_image = update_ball_position(ball_position)
     
     elif ball_rect.x >= width:
-        player_score += 1
-        update_score('player', player_score)
+        update_score('player', 'inc')
         ball_rect.x, ball_rect.y = ball_x, ball_y
         ball_position = random.choice(ball_positions)
         motion_image = update_ball_position(ball_position)
@@ -468,8 +472,8 @@ while True:
         update_computer('down')
 
     elif keys[pygame.K_r]:
-        update_score('player', 0)
-        update_score('computer', 0)
+        update_score('player', 'def')
+        update_score('computer', 'def')
 
     elif keys[pygame.K_MINUS]:
         update_speed('dec')
