@@ -132,9 +132,7 @@ game_positions()
 def game_fonts():
 
     global font
-    global font0
     font = pygame.font.SysFont('Monospace', 30)
-    font0 = pygame.font.SysFont('Monospace', 10)
 
 game_fonts()
 
