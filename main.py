@@ -43,7 +43,7 @@ def game_settings_two():
 
     game_type = 'EASY'
     width, height = 802, 502
-    game_mode = "P VS C"
+    game_mode = "PLAYER VS COMPUTER"
     player_score, computer_score = 0, 0
     screen = pygame.display.set_mode((width, height))
     screen_rect = screen.get_rect()
@@ -359,7 +359,7 @@ def check_collision():
 
 def automate_computer():
 
-    if game_mode == "P VS C" or game_mode == "C VS C":
+    if game_mode == "PLAYER VS COMPUTER" or game_mode == "COMPUTER VS COMPUTER":
 
         if ball_position == "top_right":
             if computer_rect.y >= 75:
@@ -371,7 +371,7 @@ def automate_computer():
 
 def automate_player():
 
-    if game_mode == "C VS C":
+    if game_mode == "COMPUTER VS COMPUTER":
 
         if ball_position == "top_left":
             if player_rect.y >= 75:
@@ -407,7 +407,7 @@ def update_position():
         motion_rect.x = ball_rect.x - motion_gap
         motion_rect.y = ball_rect.y - motion_gap
 
-# --- KEYS-A ---
+# --- KEYS ---
 
 def game_keysa():
 
@@ -423,7 +423,7 @@ def game_keysa():
 
 game_keysa()
 
-# --- KEYS-B ---
+# --- KEYSB ---
 
 def game_keysb():
 
@@ -496,13 +496,13 @@ while True:
     # --- KEYS-C ---
     
     elif keys[pygame.K_p]:
-        update_mode("P VS C")
+        update_mode("PLAYER VS COMPUTER")
 
     elif keys[pygame.K_c]:
-        update_mode("C VS C")
+        update_mode("COMPUTER VS COMPUTER")
 
     elif keys[pygame.K_2]:
-        update_mode("P VS P")
+        update_mode("PLAYER VS PLAYER")
 
     # --- MOUSE ---
 
