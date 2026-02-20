@@ -431,6 +431,7 @@ def game_keysb():
         "(pgup) \t\t move player2 up\n"
         "(p) \t\t player vs computer\n"
         "(up) \t\t move player up\n"
+        "(down) \t\t move player down\n"
         "(2) \t\t player1 vs player2\n"
         "(c) \t\t computer vs computer\n"
     )
