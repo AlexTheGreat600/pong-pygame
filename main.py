@@ -330,8 +330,7 @@ def check_collision():
 
         if game_type == 'HARD':
 
-            if speed < speed_max:
-                update_speed('inc')
+            if speed < speed_max: update_speed('inc')
             else:
                 update_speed('min')
 
@@ -342,8 +341,7 @@ def check_collision():
 
         if game_type == 'HARD':
 
-            if speed < speed_max:
-                update_speed('inc')
+            if speed < speed_max: update_speed('inc')
             else:
                 update_speed('min')
 
