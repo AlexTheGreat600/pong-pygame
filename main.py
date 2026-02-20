@@ -76,6 +76,8 @@ def game_images():
 
 game_images()
 
+# --- POSITION ---
+
 def update_ball_position(position):
 
     match (position):
