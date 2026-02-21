@@ -159,36 +159,6 @@ def game_type_font():
 
 game_type_font()
 
-# --- GAME-SCOREA ---
-
-def game_scorea_text():
-
-    global scorea_text
-    global scorea_text_rect
-
-    scorea_text = font.render(str(player_score), True, 'White')
-    scorea_text_rect = scorea_text.get_rect()
-    scorea_text_rect.centerx = screen_rect.centerx
-    scorea_text_rect.centerx = screen_rect.centerx / 3
-    scorea_text_rect.y = screen_rect.bottom - scorea_text_rect.h - 20
-
-game_scorea_text()
-
-# --- GAME-SCOREB ---
-
-def game_scoreb_text():
-
-    global scoreb_text
-    global scoreb_text_rect
-
-    scoreb_text = font.render(str(computer_score), True, 'White')
-    scoreb_text_rect = scoreb_text.get_rect()
-    scoreb_text_rect.centerx = screen_rect.centerx
-    scoreb_text_rect.x = screen_rect.centerx * 1.6
-    scoreb_text_rect.y = screen_rect.bottom - scoreb_text_rect.h - 20
-
-game_scoreb_text()
-
 # --- GAME-TITLE ---
 
 def game_title_font():
@@ -210,7 +180,8 @@ def game_mode_font():
     global game_mode_text
     global game_mode_text_rect
 
-    game_mode_text = font.render(game_mode, True, 'White')
+    mode_text = f'{player_score}        {game_mode}       {computer_score}'
+    game_mode_text = font.render(mode_text, True, 'White')
     game_mode_text_rect = game_mode_text.get_rect()
     game_mode_text_rect.y = screen_rect.bottom - game_mode_text_rect.h - 20
     game_mode_text_rect.centerx = screen_rect.centerx
@@ -249,8 +220,8 @@ def update_score(player, type):
         elif type == 'dec': computer_score -= 1
         elif type == 'def': computer_score = 0
 
-    scorea_text = font.render(str(player_score), True, 'White')
-    scoreb_text = font.render(str(computer_score), True, 'White')
+    game_mode_font()
+    
 
 # --- PLAYER ---
 
@@ -563,8 +534,8 @@ while True:
     screen.blit(player_image, player_rect)
     screen.blit(computer_image, computer_rect)
     screen.blit(speed_text, speed_text_rect)
-    screen.blit(scorea_text, scorea_text_rect)
-    screen.blit(scoreb_text, scoreb_text_rect)
+    #screen.blit(scorea_text, scorea_text_rect)
+    #screen.blit(scoreb_text, scoreb_text_rect)
     
     # --- DRAW-C ---
 
