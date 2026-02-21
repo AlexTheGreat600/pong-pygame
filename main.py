@@ -159,19 +159,49 @@ def game_type_font():
 
 game_type_font()
 
-# --- GAME-SCORE ---
+# --- GAME-SCOREA ---
 
-def game_score_text():
+def game_scorea_text():
 
-    global score_text
-    global score_text_rect
+    global scorea_text
+    global scorea_text_rect
 
-    score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
-    score_text_rect = score_text.get_rect()
-    score_text_rect.centerx = screen_rect.centerx
-    score_text_rect.y = 10
+    scorea_text = font.render(str(player_score), True, 'White')
+    scorea_text_rect = scorea_text.get_rect()
+    scorea_text_rect.centerx = screen_rect.centerx
+    scorea_text_rect.centerx = screen_rect.centerx / 3
+    scorea_text_rect.y = screen_rect.bottom - scorea_text_rect.h - 20
 
-game_score_text()
+game_scorea_text()
+
+# --- GAME-SCOREB ---
+
+def game_scoreb_text():
+
+    global scoreb_text
+    global scoreb_text_rect
+
+    scoreb_text = font.render(str(computer_score), True, 'White')
+    scoreb_text_rect = scoreb_text.get_rect()
+    scoreb_text_rect.centerx = screen_rect.centerx
+    scoreb_text_rect.x = screen_rect.centerx * 1.6
+    scoreb_text_rect.y = screen_rect.bottom - scoreb_text_rect.h - 20
+
+game_scoreb_text()
+
+# --- GAME-TITLE ---
+
+def game_title_font():
+
+    global game_title_text
+    global game_title_text_rect
+
+    game_title_text = font.render('PONG', True, 'White')
+    game_title_text_rect = game_title_text.get_rect()
+    game_title_text_rect.y = 10
+    game_title_text_rect.centerx = screen_rect.centerx
+
+game_title_font()
 
 # --- GAME-MODE ---
 
@@ -205,7 +235,7 @@ game_speed_text()
 
 def update_score(player, type):
     
-    global player_score, computer_score, score_text
+    global player_score, computer_score, scorea_text, scoreb_text
 
     if player == 'player':
 
@@ -219,7 +249,8 @@ def update_score(player, type):
         elif type == 'dec': computer_score -= 1
         elif type == 'def': computer_score = 0
 
-    score_text = font.render(f'{player_score} VS {computer_score}', True, 'White')
+    scorea_text = font.render(str(player_score), True, 'White')
+    scoreb_text = font.render(str(computer_score), True, 'White')
 
 # --- PLAYER ---
 
@@ -532,10 +563,12 @@ while True:
     screen.blit(player_image, player_rect)
     screen.blit(computer_image, computer_rect)
     screen.blit(speed_text, speed_text_rect)
-    screen.blit(score_text, score_text_rect)
+    screen.blit(scorea_text, scorea_text_rect)
+    screen.blit(scoreb_text, scoreb_text_rect)
     
     # --- DRAW-C ---
 
+    screen.blit(game_title_text, game_title_text_rect)
     screen.blit(game_mode_text, game_mode_text_rect)
     screen.blit(game_type_text, game_type_text_rect)
     pygame.display.flip()
