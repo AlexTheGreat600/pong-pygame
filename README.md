@@ -1,6 +1,6 @@
 # Pong
 
-![](screenshot.png Pong Screenshot)
+![Pong Screenshot](screenshot.png Pong)
 
 🏓 Nice Pong Game Made In Pygame-ce
 
