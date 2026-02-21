@@ -534,8 +534,6 @@ while True:
     screen.blit(player_image, player_rect)
     screen.blit(computer_image, computer_rect)
     screen.blit(speed_text, speed_text_rect)
-    #screen.blit(scorea_text, scorea_text_rect)
-    #screen.blit(scoreb_text, scoreb_text_rect)
     
     # --- DRAW-C ---
 
