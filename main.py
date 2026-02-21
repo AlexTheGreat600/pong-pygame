@@ -205,8 +205,8 @@ game_speed_text()
 # --- SCORE ---
 
 def update_score(player, type):
-    
-    global player_score, computer_score, scorea_text, scoreb_text
+
+    global player_score, computer_score
 
     if player == 'player':
 
@@ -221,7 +221,6 @@ def update_score(player, type):
         elif type == 'def': computer_score = 0
 
     game_mode_font()
-    
 
 # --- PLAYER ---
 
@@ -253,7 +252,7 @@ def update_computer(direction):
 
 def update_speed(type):
     
-    global speed, speed_text
+    global speed
 
     if type == 'dec':
         if speed > speed_min: speed -= 1
@@ -267,23 +266,23 @@ def update_speed(type):
     elif type == 'min':
         speed = speed_min
 
-    speed_text = font.render(f'SPEED: {speed}', True, 'Black')
+    game_speed_text()
 
 # --- TYPE ---
 
 def update_type(type):
 
-    global game_type, game_type_text
+    global game_type
     game_type = type
-    game_type_text = font.render(f'TYPE: {game_type}', True, 'Black')
+    game_type_font()
 
 # --- MODE ---
 
 def update_mode(mode):
 
-    global game_mode, game_mode_text
+    global game_mode
     game_mode = mode
-    game_mode_text = font.render(f'{game_mode}', True, 'White')
+    game_mode_font()
 
 # --- SWITCH ---
 
