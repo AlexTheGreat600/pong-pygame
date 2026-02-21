@@ -2,7 +2,7 @@
 
 ![Pong Screenshot](screenshot.png)
 
-🏓 Nice Pong Game Made In Pygame-ce
+> 🏓 Nice Pong Game Made In Pygame-ce
 
 | KEY            | ABOUT              |
 | -------------- | ------------------
